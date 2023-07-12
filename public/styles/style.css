@@ -1,0 +1,278 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Signika',
+        sans-serif;
+}
+
+
+img {
+    transition: .4s linear;
+}
+
+.circle-with-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: white;
+    width: 28px;
+    height: 28px;
+}
+
+
+.header {
+    position: sticky;
+    color: white;
+    padding: 20px;
+    background-image: url('../assets/background/white-cloud-blue-sky.jpg');
+    background-size: auto;
+    border-radius: 0 0 33px 33px;
+}
+
+.header--name--searchIcon {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.header--weather {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10% 0;
+}
+
+.weather--celsius {
+    display: flex;
+    align-items: center;
+}
+
+.celsius--degree {
+    font-size: 4em;
+}
+
+.celsius--feelLike {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.celsius--feelLike>sup {
+    font-size: 3em;
+
+}
+
+.weather--icon img {
+    width: 100px;
+    height: 100px;
+    margin: 0;
+}
+
+.weather--icon h2 {
+    line-height: 10px;
+    margin: 0;
+    text-align: center;
+
+}
+
+/* hooruly */
+.hourlyForcast {
+    background-color: #ebdeff;
+    padding: 10px;
+    margin: 10px 20px;
+    border-radius: 18px;
+}
+
+.hourlyForcast--title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+
+.hourlyForcast--forcast-wrapper {
+    display: flex;
+    padding-left: 5%;
+    gap: 20px;
+}
+
+.forcast-wrapper--forcast {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.forcast-wrapper--forcast>* {
+    margin: 0;
+}
+
+.forcast--icon {
+    width: 50px;
+    height: 50px;
+}
+
+/* sunset rise */
+
+.weather-varibales-container {
+    display: grid;
+    grid-template: 1fr 1fr/1fr 1fr;
+    gap: 10px;
+    padding: 20px;
+}
+
+.weather-variable {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 10px 10px;
+    border-radius: 10px;
+    background-color: #ebdeff;
+}
+
+.weather-variable--value-and-title>* {
+    margin: 0;
+}
+
+.weather-variable--value-and-title {
+    display: flex;
+    flex-direction: column;
+}
+
+/* perciption */
+.rain-perception {
+    background-color: #ebdeff;
+    padding: 10px;
+    margin: 10px 20px;
+    border-radius: 18px;
+}
+
+.rain-perception--title-and-icon {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.rain-perception--graph {
+    display: flex;
+    flex-direction: column;
+}
+
+.graph--container {
+    margin: 5px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+}
+
+.graph--container--scale {
+    position: relative;
+    width: 80%;
+    height: .5cm;
+    border-radius: 20px;
+    background-color: #FAEDFF;
+}
+
+.graph--container--scale--color-scale {
+    position: absolute;
+    width: 40%;
+    height: 100%;
+    background-color: #8A20D5;
+    border-radius: inherit;
+
+}
+
+/* navigation */
+
+.navigation {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.navigation label {
+    width: calc(100%/3);
+    height: 1cm;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 10px;
+    background-color: #ebdeff;
+    transition: .3s linear;
+}
+
+.navigation input {
+    display: none;
+}
+
+.navigation input:checked+label {
+    background-color: #E0B6FF;
+}
+
+/* 10 days */
+.ten-days-forcast {
+    padding: 20px;
+}
+
+.forcast {
+    border-radius: 10px;
+    background-color: #EBDEFF;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 10px;
+    padding: 10px;
+}
+
+
+.forcast--details {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.forcast--image img {
+    width: 60px;
+    height: 60px;
+}
+
+@media only screen and (max-width:400px) {
+
+    .weather--icon img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .forcast--icon {
+        width: 28px;
+        height: 28px;
+    }
+
+    .graph--container--scale {
+        width: 200px;
+    }
+
+    .graph--container--time,
+    .graph--container--percentage {
+        font-size: 13px;
+    }
+
+}
+
+@media only screen and (max-width:550px) {
+    .graph--container--scale {
+        width: 229px;
+    }
+
+
+}
