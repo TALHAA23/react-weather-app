@@ -1,5 +1,4 @@
-export default function HourlyForecast() {
-  console.log("re-render");
+export default function HourlyForecast({ hourlyForecast }) {
   return (
     <div className="hourlyForcast">
       <div className="hourlyForcast--title">
@@ -9,20 +8,26 @@ export default function HourlyForecast() {
         <p className="title--text">Hourly forcast</p>
       </div>
       <div className="hourlyForcast--forcast-wrapper">
-        <Forcast />
-        <Forcast />
+        {hourlyForecast?.map((item) => (
+          <Forcast
+            key={item.time}
+            hour={item.time}
+            celsius={item.temp_c}
+            icon={item.condition.icon}
+          />
+        ))}
       </div>
     </div>
   );
 }
 
-function Forcast() {
+export function Forcast({ hour, celsius, icon }) {
   return (
     <div className="forcast-wrapper--forcast">
-      <p className="forcast--text">Now</p>
-      <img src="/assets/Sun.png" className="forcast--icon" />
+      <p className="forcast--text">{`${new Date(hour).getHours()}:00`}</p>
+      <img src={icon} className="forcast--icon" />
       <p className="forcast--temperature">
-        10 <sup>°</sup>
+        {celsius} <sup>°</sup>
       </p>
     </div>
   );
