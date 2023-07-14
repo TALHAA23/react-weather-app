@@ -3,20 +3,29 @@ import HourlyForecast from "./HomeComponents/HourlyForecast";
 import WeatherVariable from "./HomeComponents/WeatherVariable";
 import Perception from "./HomeComponents/Perception";
 import Navigation from "./HomeComponents/Navigator";
-import TenDaysForcast from "./HomeComponents/10DaysForcast";
+import FiveDaysForcast from "./HomeComponents/5DaysForcast";
 import { useEffect, useState } from "react";
-import getForcast from "../api/current-and-hourly";
+import getCurrentWeather from "../api/current-and-hourly";
+import fiveDaysforecast from "../api/5-days-forecast";
 
 export default function Home() {
   const [isTodayForcast, setIsTodayForcast] = useState(true);
   const [todayForecast, setTodayForecast] = useState({});
+  const [forecast, setForcast] = useState([]);
   const [weatherVariables, setWeatherVaribales] = useState({});
+  const [searchParams, setSearchParams] = useState("peshawar");
 
   useEffect(() => {
     (async () => {
-      setTodayForecast(await getForcast());
+      setTodayForecast(await getCurrentWeather(searchParams));
     })();
-  }, []);
+  }, [searchParams]);
+
+  useEffect(() => {
+    (async () => {
+      setForcast(await fiveDaysforecast(searchParams));
+    })();
+  }, [searchParams]);
 
   useEffect(
     () => todayForecast && setWeatherVaribales(todayForecast.weatherVariables),
@@ -27,9 +36,14 @@ export default function Home() {
     setIsTodayForcast(isPageChange);
   }
 
+  function handleSubmit(searchParams) {
+    setSearchParams(searchParams);
+  }
+
   return (
     <>
       <Header
+        handleSubmit={handleSubmit}
         currentWeather={todayForecast.currentWeather}
         location={todayForecast.location}
       />
@@ -73,7 +87,7 @@ export default function Home() {
           <Perception hourlyForecast={todayForecast?.hourlyForcast} />
         </main>
       ) : (
-        <TenDaysForcast />
+        <FiveDaysForcast forecast={forecast} />
       )}
     </>
   );

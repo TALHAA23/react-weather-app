@@ -24,6 +24,27 @@ img {
     height: 28px;
 }
 
+.header--search-bar {
+    background-color: transparent;
+    border: 1px solid #E0B6FF;
+    border-radius: 20px;
+    height: .7cm;
+    margin: 10px;
+    scale: 0;
+    flex-grow: 2;
+    transform-origin: center;
+    transition: .3s linear;
+}
+
+.header--search-bar.header--search-bar--visable {
+    scale: 1;
+}
+
+.header--form-submit {
+    background-color: transparent;
+    border: none;
+}
+
 
 .header {
     position: sticky;
@@ -290,6 +311,11 @@ img {
 @media only screen and (max-width:550px) {
     .graph--container--scale {
         width: 229px;
+    }
+
+    .header--name--searchIcon {
+        flex-direction: column-reverse;
+        align-items: flex-start;
     }
 
 

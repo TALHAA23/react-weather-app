@@ -1,17 +1,40 @@
-import { memo } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import DateAndTime from "../../Date/monthDate_timeFormat";
 
-function Header({ currentWeather, location }) {
+function Header({ currentWeather, location, handleSubmit }) {
   if (!currentWeather) return;
+  const [isSearchBarVisable, setIsSearchBarVisable] = useState(false);
+  const searchParams = useRef();
+
   return (
     <div className="header">
-      <div className="header--name--searchIcon">
+      <form
+        className="header--name--searchIcon"
+        onSubmit={(event) => {
+          event.preventDefault();
+          handleSubmit(searchParams.current.value);
+          setIsSearchBarVisable(false);
+          searchParams.current.value = "";
+        }}
+      >
         <h2>{location}</h2>
-        {/* <input type="search" id="search" /> */}
-        <label htmlFor="search">
+        <input
+          ref={searchParams}
+          className={`header--search-bar ${
+            isSearchBarVisable ? "header--search-bar--visable" : ""
+          }`}
+          type="search"
+          id="search"
+        />
+
+        <button
+          type={isSearchBarVisable ? "button" : "submit"}
+          className="header--form-submit"
+          onClick={() => setIsSearchBarVisable(!isSearchBarVisable)}
+        >
           <img src="/assets/search-dark.svg" />
-        </label>
-      </div>
+        </button>
+      </form>
 
       <div className="header--weather">
         <div className="weather--celsius">
@@ -26,7 +49,6 @@ function Header({ currentWeather, location }) {
         </div>
 
         <div className="weather--icon">
-          {/* <img src="assets/Sun.png" alt="sun" /> */}
           <img src={currentWeather.condition.icon} alt="sun" />
           <h2>{currentWeather.condition.text}</h2>
         </div>
