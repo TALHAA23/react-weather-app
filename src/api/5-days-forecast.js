@@ -5,8 +5,6 @@ export default async function fiveDaysforecast(city) {
     const forecast = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}`)
         .then(res => res.json());
 
-    console.log(await forecast)
-
     let repeatedDate = '';
     const information = []
 

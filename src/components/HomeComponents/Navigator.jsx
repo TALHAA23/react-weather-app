@@ -8,8 +8,7 @@ export default function Navigation({ changePage }) {
         onClick={() => changePage(true)}
       />
       <label htmlFor="today">Today</label>
-      <input type="radio" id="tomorrow" name="forcast" />
-      <label htmlFor="tomorrow">Tomorrow</label>
+
       <input
         type="radio"
         id="10days"

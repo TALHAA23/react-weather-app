@@ -18,7 +18,7 @@ export default function Perception({ hourlyForecast }) {
               <RainPerception
                 key={item.time}
                 time={forcastTime}
-                chanceOfRain={item.will_it_rain}
+                chanceOfRain={item.chance_of_rain}
               />
             );
           }

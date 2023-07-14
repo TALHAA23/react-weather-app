@@ -50,7 +50,7 @@ img {
     position: sticky;
     color: white;
     padding: 20px;
-    background-image: url('../assets/background/white-cloud-blue-sky.jpg');
+    /* background-image: url('../assets/background/white-cloud-blue-sky.jpg'); */
     background-size: auto;
     border-radius: 0 0 33px 33px;
 }

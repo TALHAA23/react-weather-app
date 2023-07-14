@@ -6,8 +6,14 @@ function Header({ currentWeather, location, handleSubmit }) {
   const [isSearchBarVisable, setIsSearchBarVisable] = useState(false);
   const searchParams = useRef();
 
+  const backgroundURL = {
+    backgroundImage: `url('../assets/background/${chooseBackgoundImage(
+      currentWeather.condition.text
+    )}.jpg'), url('../assets/background/defaultBackground.jpg')`,
+  };
+
   return (
-    <div className="header">
+    <div className="header" style={backgroundURL}>
       <form
         className="header--name--searchIcon"
         onSubmit={(event) => {
@@ -62,3 +68,15 @@ function Header({ currentWeather, location, handleSubmit }) {
 }
 
 export default memo(Header);
+
+function chooseBackgoundImage(condition) {
+  const images = ["rain", "cloud", "thunder", "fog", "mist", "overcast", "sun"];
+
+  let backgound = null;
+
+  images.forEach((image) => {
+    if (condition.toLowerCase().includes(image)) backgound = image;
+  });
+
+  return backgound;
+}

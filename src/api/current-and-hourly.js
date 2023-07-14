@@ -11,6 +11,7 @@ export default async function getCurrentWeather(city) {
     const {
         wind_mph,
         pressure_mb,
+        precip_mm,
         uv
     } = await currentWeather;
     const {
@@ -19,9 +20,10 @@ export default async function getCurrentWeather(city) {
     } = await sunrisesunset;
 
     const weatherVariables = {
-        wind: `${wind_mph}Km/h`,
+        wind: `${wind_mph}km/h`,
         pressue: `${pressure_mb} hpa`,
         uv: uv,
+        perceiption_in_mm: `${precip_mm}mm`,
         sunrise: sunrise,
         sunset: sunset,
     };

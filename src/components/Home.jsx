@@ -9,6 +9,7 @@ import getCurrentWeather from "../api/current-and-hourly";
 import fiveDaysforecast from "../api/5-days-forecast";
 
 export default function Home() {
+  const [isBadRequest, setIsBadRequest] = useState(false);
   const [isTodayForcast, setIsTodayForcast] = useState(true);
   const [todayForecast, setTodayForecast] = useState({});
   const [forecast, setForcast] = useState([]);
@@ -17,13 +18,23 @@ export default function Home() {
 
   useEffect(() => {
     (async () => {
-      setTodayForecast(await getCurrentWeather(searchParams));
+      try {
+        setTodayForecast(await getCurrentWeather(searchParams));
+        isBadRequest && setIsBadRequest(false);
+      } catch (e) {
+        setIsBadRequest(true);
+      }
     })();
   }, [searchParams]);
 
   useEffect(() => {
     (async () => {
-      setForcast(await fiveDaysforecast(searchParams));
+      try {
+        setForcast(await fiveDaysforecast(searchParams));
+        isBadRequest && setIsBadRequest(false);
+      } catch (e) {
+        setIsBadRequest(true);
+      }
     })();
   }, [searchParams]);
 
@@ -37,11 +48,17 @@ export default function Home() {
   }
 
   function handleSubmit(searchParams) {
-    setSearchParams(searchParams);
+    searchParams && setSearchParams(searchParams);
   }
 
   return (
     <>
+      {isBadRequest && (
+        <h2>
+          Bad Request try checking network connection or search with other
+          keywords
+        </h2>
+      )}
       <Header
         handleSubmit={handleSubmit}
         currentWeather={todayForecast.currentWeather}
@@ -56,7 +73,11 @@ export default function Home() {
               icon="air"
               value={weatherVariables?.wind}
             />
-            <WeatherVariable title="Rain chance" icon="rainy" value="TBD" />
+            <WeatherVariable
+              title="Rain Perceiption"
+              icon="rainy"
+              value={weatherVariables?.perceiption_in_mm}
+            />
             <WeatherVariable
               title="Pressue"
               icon="waves"
