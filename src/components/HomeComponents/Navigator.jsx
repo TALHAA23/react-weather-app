@@ -15,7 +15,7 @@ export default function Navigation({ changePage }) {
         name="forcast"
         onClick={() => changePage(false)}
       />
-      <label htmlFor="10days">10 Days</label>
+      <label htmlFor="10days">5 Days</label>
     </div>
   );
 }
