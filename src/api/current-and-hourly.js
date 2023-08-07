@@ -1,6 +1,6 @@
 export default async function getCurrentWeather(city) {
     const forcast = await fetch(
-        `http://api.weatherapi.com/v1/forecast.json?key=013d87f7b7f644169ee154512231207&q=${city}&days=1&aqi=no&alerts=no`
+        `https://api.weatherapi.com/v1/forecast.json?key=013d87f7b7f644169ee154512231207&q=${city}&days=1&aqi=no&alerts=no`
     ).then((res) => res.json());
 
     const location = forcast.location.name;
